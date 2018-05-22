@@ -19,6 +19,18 @@ describe HistoryHash do
     it "always returns nil at time 1" do
       expect(store.get(:age, 1)).to be_nil
     end
+
+    it "returns the latest value if the specified time is bigger than number of assignments" do
+      expect(store.get(:age, 42)).to eq 29
+    end
+
+    it "raises an ArgumentError for every negative time" do
+      expect { store.get(:age, -2) }.to raise_error ArgumentError
+    end
+
+    it "raises an ArgumentError if the time is not a number" do
+      expect { store.get(:age, "old") }.to raise_error ArgumentError
+    end
   end
 
   describe "#set" do
