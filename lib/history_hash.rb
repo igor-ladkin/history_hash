@@ -18,7 +18,7 @@ class HistoryHash
   private
 
   def safe_time(key, time)
-    raise ArgumentError unless time.is_a?(Integer) && time > 0
+    raise ArgumentError, "Time should be positive integer" unless time.is_a?(Integer) && time > 0
 
     time > store[key].size ? -1 : time - 1
   end

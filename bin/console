@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require_relative "../lib/history_hash"
+
+documentation = <<~DOC
+HistoryHash class provides a simple API to key-value store that also supports time-travelling.
+This means that keep history of every value assigned to a particular key.
+
+Reference:
+  - To create new store: store = HistoryHash.new
+  - To fetch latest value for a particular key: store.get(:foo)
+  - To set a value for a key: store.set(:foo, 42)
+  - To fetch a value at a particular time: store.get(:foo, 2)
+
+Constraints:
+  - You should specify time within existing boundaries. Use positive Integer numbers at times.
+    In case if you try to fetch the value at time that hasn't been assigned yet, we gracefully fallback to the latest value.
+
+
+DOC
+
+puts documentation
+
+require "irb"
+IRB.start(__FILE__)
