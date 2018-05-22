@@ -3,14 +3,15 @@ class HistoryHash
   private :store
 
   def initialize(initial_hash = {})
-    @store = initial_hash
+    @store = Hash.new([nil]).merge(initial_hash)
   end
 
   def get(key, time = 0)
-    if store.key?(key)
-      store[key][time - 1]
-    else
-      nil
-    end
+    store[key][time - 1]
+  end
+
+  def set(key, value)
+    store[key].push(value)
+    value
   end
 end
