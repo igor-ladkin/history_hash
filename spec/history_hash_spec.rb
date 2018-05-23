@@ -46,6 +46,14 @@ describe HistoryHash do
       expect(store.get(:age)).to eq 30
     end
 
+    it "stores values separately for every particular key" do
+      store.set(:amount, 1000)
+      store.set(:currency, "USD")
+
+      expect(store.get(:amount)).to eq 1000
+      expect(store.get(:currency)).to eq "USD"
+    end
+
     it "returns newly set value" do
       expect(store.set(:age, 31)).to eq 31
     end

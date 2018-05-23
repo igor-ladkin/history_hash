@@ -3,7 +3,7 @@ class HistoryHash
   private :store
 
   def initialize(initial_hash = {})
-    @store = Hash.new([nil]).merge(initial_hash)
+    @store = Hash.new { |hash, k| hash[k] = [nil] }.merge(initial_hash)
   end
 
   def get(key, time = store[key].size)
